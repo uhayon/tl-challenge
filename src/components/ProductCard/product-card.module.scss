@@ -1,0 +1,20 @@
+.productCard {
+	display: flex;
+	height: 144px;
+
+	background-color: white;
+
+	.productImage {
+		height: 100%;
+		width: 114px;
+	}
+
+	.productDescription {
+		h3 {
+			margin: 0;
+
+			font-size: 14px;
+			line-height: 18px;
+		}
+	}
+}

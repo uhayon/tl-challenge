@@ -1,5 +1,5 @@
 import React from 'react';
-import { ILineItem, DiscountProgressConfig } from '../../types';
+import { DiscountProgressConfig, ILineItem } from '../../types';
 
 interface DiscountProcessBarProps {
   total: number;
@@ -12,7 +12,12 @@ const DiscountProcessBar: React.FunctionComponent<DiscountProcessBarProps> = ({
   lineItems,
   config,
 }) => {
-  return (<div>Future Discount Progress</div>);
+  return (
+    <div>
+      Future Discount Progress{' '}
+      {`${total} - ${JSON.stringify(lineItems)} - ${JSON.stringify(config)}`}
+    </div>
+  );
 };
 
 export default DiscountProcessBar;

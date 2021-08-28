@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "image": "/products/bra-1.jpeg",
+    "name": "24/7® Classic Lace Racerback",
+    "productType": "bra",
+    "price": 29
+  },
+  {
+    "id": 2,
+    "image": "/products/bra-2.jpeg",
+    "name": "24/7® Classic Strapless Bra",
+    "productType": "bra",
+    "price": 65
+  },
+  {
+    "id": 3,
+    "image": "/products/underwear.jpeg",
+    "name": "Form Seamless Hipster",
+    "productType": "pant",
+    "price": 14
+  }
+]
