@@ -4,6 +4,7 @@ export interface ILineItem {
   price: number;
   image: string;
   id: number;
+  variant: string;
 }
 
 export type ILineSelectedItem = ILineItem & { count: number };
@@ -16,6 +17,6 @@ export interface ProductsApiResponseItem {
   id: number;
   title: string;
   product_type: string;
-  variants: Array<{ price: string }>;
+  variants: Array<{ price: string; title: string }>;
   image: { src: string };
 }

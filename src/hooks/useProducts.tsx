@@ -9,8 +9,9 @@ import {
 interface IProductsContext {
   availableItems: ILineItem[];
   selectedItems: ILineSelectedItem[];
-  removeItem: (item: ILineSelectedItem, count?: number) => void;
+  removeItem: (itemId: number, count?: number) => void;
   addItem: (item: ILineItem) => void;
+  addItemCount: (itemId: number, count?: number) => void;
 }
 
 /**
@@ -19,6 +20,7 @@ interface IProductsContext {
 const productsContext = createContext<IProductsContext>({
   addItem: () => ({}),
   removeItem: () => ({}),
+  addItemCount: () => ({}),
   selectedItems: [],
   availableItems: [],
 });
@@ -68,6 +70,7 @@ const useProvideProducts = (): IProductsContext => {
             price: +variant.price,
             name: d.title,
             productType: d.product_type,
+            variant: variant.title,
           };
         });
         setAvailableItems(parsedItems);
@@ -95,21 +98,31 @@ const useProvideProducts = (): IProductsContext => {
   };
 
   /**
+   * Add the desired count of elements to the provided item.
+   * If the count is negative, removes that count
+   * @param itemId id of the item to add count
+   * @param count Count to add (allows negative to remove items instead)
+   */
+  const addItemCount = (itemId: number, count = 1) => {
+    const newSelectedItems: ILineSelectedItem[] = [...selectedItems];
+    const elementIndex = newSelectedItems.findIndex((si) => si.id === itemId);
+    if (elementIndex > -1) {
+      newSelectedItems[elementIndex].count += count;
+      if (newSelectedItems[elementIndex].count <= 0) {
+        newSelectedItems.splice(elementIndex, 1);
+      }
+      setSelectedItems([...newSelectedItems]);
+    }
+  };
+
+  /**
    * The default behaviour expects to remove 1 element from the selected item.
    * Extensible to remove the whole item from the cart.
    * @param item The item to remove from it's count
    * @param count The quantity to remove from the specified item. Defaults to 1
    */
-  const removeItem = (item: ILineSelectedItem, count = 1) => {
-    const newSelectedItems: ILineSelectedItem[] = [...selectedItems];
-    const elementIndex = newSelectedItems.findIndex((si) => si.id === item.id);
-    if (elementIndex > -1) {
-      newSelectedItems[elementIndex].count -= count;
-      if (newSelectedItems[elementIndex].count === 0) {
-        newSelectedItems.splice(elementIndex, 1);
-      }
-      setSelectedItems([...newSelectedItems]);
-    }
+  const removeItem = (itemId: number, count = 1) => {
+    addItemCount(itemId, -count);
   };
 
   return {
@@ -117,5 +130,6 @@ const useProvideProducts = (): IProductsContext => {
     selectedItems,
     addItem,
     removeItem,
+    addItemCount,
   };
 };

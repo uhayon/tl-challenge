@@ -2,6 +2,7 @@ import './App.css';
 // import DiscountProcessBar from './components/DiscountProgressBar';
 // import products from './data/products.json';
 import Cart from './components/Cart';
+import { ProvideDiscounts } from './hooks/useDiscounts';
 import { ProvideProducts } from './hooks/useProducts';
 // import { ILineItem } from './types';
 
@@ -40,7 +41,9 @@ function App(): JSX.Element {
         <span>Total:</span>
         <span>{0}</span>
       </div> */}
-        <Cart />
+        <ProvideDiscounts>
+          <Cart />
+        </ProvideDiscounts>
       </div>
     </ProvideProducts>
   );

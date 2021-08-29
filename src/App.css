@@ -41,7 +41,7 @@
 	justify-content: center;
 }
 
-button {
+.button-add-item {
 	width: 300px;
 
 	padding: 5px 30px;

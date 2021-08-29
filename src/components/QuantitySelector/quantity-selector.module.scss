@@ -1,0 +1,37 @@
+.quantitySelector {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	grid-row: 3;
+	grid-column: 2/4;
+
+	padding-left: 12px;
+
+	.handle {
+		display: flex;
+		height: 30px;
+		width: 89px;
+		align-items: center;
+		justify-content: space-between;
+
+		border: 1px solid rgba(44, 39, 45, 0.1);
+		border-radius: 4px;
+
+		.buttonHandle {
+			display: flex;
+			height: 10px;
+			align-items: center;
+			justify-content: center;
+
+			border: none;
+
+			background-color: transparent;
+		}
+	}
+
+	.subtotal {
+		font-size: 14px;
+		font-weight: bold;
+		line-height: 18px;
+	}
+}
