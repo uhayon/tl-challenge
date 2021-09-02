@@ -1,0 +1,38 @@
+.subtotal {
+	display: flex;
+	flex-direction: column;
+
+	margin-top: 30px;
+
+	.categoryContainer {
+		display: flex;
+		justify-content: space-between;
+
+		margin: 2px 0;
+
+		.label {
+			font-size: 14px;
+			line-height: 18px;
+
+			letter-spacing: -0.01em;
+		}
+
+		.tierDescription {
+			margin-left: 2px;
+
+			font-size: 12px;
+			line-height: 14px;
+			color: #666;
+		}
+
+		.value {
+			font-size: 14px;
+			font-weight: bold;
+			line-height: 18px;
+
+			&.discount {
+				color: #c51e1e;
+			}
+		}
+	}
+}

@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:non-interactive": "yarn test -- --watchAll=false"
   },
   "eslintConfig": {
     "extends": [
@@ -78,7 +79,7 @@
       "organize-imports-cli",
       "eslint --cache --fix",
       "prettier --write",
-      "jest --bail --verbose --findRelatedTests"
+      "yarn test:non-interactive"
     ]
   },
   "config": {

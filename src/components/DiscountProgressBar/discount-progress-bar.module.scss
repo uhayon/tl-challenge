@@ -10,6 +10,7 @@
 
 	.nextTier {
 		margin: 0;
+		margin-bottom: 10px;
 
 		font-size: 14px;
 		line-height: 18px;
@@ -18,50 +19,6 @@
 
 	.tierBarsContainer {
 		display: flex;
-
-		.tierBar {
-			height: 6px;
-			width: 100px;
-
-			position: relative;
-
-			border: 2px solid white;
-			border-right: none;
-			border-radius: 100px;
-
-			background-color: #f6dfcf;
-
-			&:not(:first-child) {
-				&::before {
-					height: 6px;
-					width: 2px;
-
-					position: absolute;
-					left: 0;
-
-					z-index: 1;
-
-					border-right: 2px solid white;
-					border-radius: 0 100px 100px 0;
-
-					background-color: white;
-
-					content: "";
-				}
-			}
-
-			.completition {
-				height: 6px;
-
-				position: absolute;
-
-				border-radius: 0 100px 100px 0;
-
-				background-color: red;
-
-				transition: width 0.5s;
-			}
-		}
 	}
 
 	.tierDiscountContainer {

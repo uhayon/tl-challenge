@@ -3,10 +3,13 @@ import { useProducts } from '../../hooks/useProducts';
 import { ILineItem } from '../../types';
 import DiscountProgressBar from '../DiscountProgressBar';
 import ProductCard from '../ProductCard';
+import Spinner from '../Spinner';
+import Subtotal from '../Subtotal';
 import styles from './cart.module.scss';
 
 const Cart: FC = () => {
-  const { selectedItems, addItem, availableItems } = useProducts();
+  const { selectedItems, addItem, availableItems, fetchingProducts } =
+    useProducts();
 
   const addProduct = (product: ILineItem) => () => {
     addItem(product);
@@ -19,15 +22,20 @@ const Cart: FC = () => {
         {selectedItems.map((sp) => (
           <ProductCard product={sp} key={sp.id} />
         ))}
+        <Subtotal />
       </div>
       <div className="App-button-section">
-        {availableItems.map((ai) => (
-          <button
-            onClick={addProduct(ai)}
-            key={ai.id}
-            className="button-add-item"
-          >{`Add ${ai.name} ${ai.id}`}</button>
-        ))}
+        {fetchingProducts ? (
+          <Spinner />
+        ) : (
+          availableItems.map((ai) => (
+            <button
+              onClick={addProduct(ai)}
+              key={ai.id}
+              className="button-add-item"
+            >{`Add ${ai.name} ${ai.id}`}</button>
+          ))
+        )}
       </div>
     </div>
   );

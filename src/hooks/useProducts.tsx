@@ -12,6 +12,7 @@ interface IProductsContext {
   removeItem: (itemId: number, count?: number) => void;
   addItem: (item: ILineItem) => void;
   addItemCount: (itemId: number, count?: number) => void;
+  fetchingProducts: boolean;
 }
 
 /**
@@ -23,6 +24,7 @@ const productsContext = createContext<IProductsContext>({
   addItemCount: () => ({}),
   selectedItems: [],
   availableItems: [],
+  fetchingProducts: false,
 });
 
 /**
@@ -50,6 +52,7 @@ export const useProducts = (): IProductsContext => {
 const useProvideProducts = (): IProductsContext => {
   const [selectedItems, setSelectedItems] = useState<ILineSelectedItem[]>([]);
   const [availableItems, setAvailableItems] = useState<ILineItem[]>([]);
+  const [fetchingProducts, setFetchingProducts] = useState(false);
 
   /**
    * When the app loads, fetch the products from the API.
@@ -57,6 +60,7 @@ const useProvideProducts = (): IProductsContext => {
    */
   useEffect(() => {
     const fetchAvailableItems = async () => {
+      setFetchingProducts(true);
       try {
         const response = await fetch('https://products.free.beeceptor.com/');
         const { products } = (await response.json()) as {
@@ -77,6 +81,7 @@ const useProvideProducts = (): IProductsContext => {
       } catch (_) {
         setAvailableItems(productsMock);
       }
+      setFetchingProducts(false);
     };
     void fetchAvailableItems();
   }, []);
@@ -131,5 +136,6 @@ const useProvideProducts = (): IProductsContext => {
     addItem,
     removeItem,
     addItemCount,
+    fetchingProducts,
   };
 };

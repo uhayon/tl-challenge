@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Subtotal Should render successfully 1`] = `
+<div>
+  <div
+    class="subtotal"
+  >
+    <div
+      class="categoryContainer"
+    >
+      <span
+        class="label"
+      >
+        Build Your Kit Subtotal
+      </span>
+      <span
+        class="value"
+      >
+        $0
+      </span>
+    </div>
+  </div>
+</div>
+`;
